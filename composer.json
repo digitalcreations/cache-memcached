@@ -1,0 +1,32 @@
+{
+    "name": "dc/cache-memcache",
+    "description": "Cache interface",
+    "keywords": ["cache", "memcached"],
+    "homepage": "http://github.com/digitalcreations/cache",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Digital Creations AS",
+            "homepage": "http://www.digitalcreations.no",
+            "role": "Company"
+        },
+        {
+            "name": "Vegard Andreas Larsen",
+            "homepage": "http://vega.rd.no",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "http://github.com/digitalcreations/cache/issues",
+        "source": "http://github.com/digitalcreations/cache"
+    },
+    "require": {
+        "dc/cache": "0.*",
+        "ext-memcache": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DC\\Cache\\Implementations\\Memcache\\": "src/"
+        }
+    }
+}

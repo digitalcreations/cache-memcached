@@ -1,0 +1,69 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "2442b5f7dd959459017121e524e65069",
+    "packages": [
+        {
+            "name": "dc/cache",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/digitalcreations/cache.git",
+                "reference": "3940e571acd963dc3456ce15a519804cc63b8173"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/digitalcreations/cache/zipball/3940e571acd963dc3456ce15a519804cc63b8173",
+                "reference": "3940e571acd963dc3456ce15a519804cc63b8173",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DC\\Cache\\": "src/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Digital Creations AS",
+                    "homepage": "http://www.digitalcreations.no",
+                    "role": "Company"
+                },
+                {
+                    "name": "Vegard Andreas Larsen",
+                    "homepage": "http://vega.rd.no",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Cache interface",
+            "homepage": "http://github.com/digitalcreations/cache",
+            "keywords": [
+                "cache",
+                "memcached"
+            ],
+            "time": "2014-05-04 13:59:47"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "ext-memcache": "*"
+    },
+    "platform-dev": [
+
+    ]
+}
