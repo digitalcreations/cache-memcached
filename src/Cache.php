@@ -68,7 +68,7 @@ class Cache implements \DC\Cache\ICache {
      *
      * @param string $key
      * @param callable $fallback
-     * @param int|\DateInterval|\DateTime $validity Number of seconds this is valid for (if int)
+     * @param int|\DateInterval|\DateTime|callable $validity Number of seconds this is valid for (if int). If this is a callable, it will get the return value as its only argument, and will need to return int|\DateInterval|\DateTime.
      * @return mixed
      */
     function getWithFallback($key, callable $fallback, $validity = null)
@@ -78,6 +78,14 @@ class Cache implements \DC\Cache\ICache {
         // serializing everything that goes in, and having get() throw if the content is not serialized
         if ($value === false) {
             $value = $fallback();
+            if (is_callable($validity)) {
+                $validity = $validity($value);
+                if (!($validity instanceof \DateInterval) &&
+                    !($validity instanceof \DateTime) &&
+                    !is_int($validity)) {
+                    throw new \UnexpectedValueException('Validity callback should return instance of \DateTime or \DateInterval or int.');
+                }
+            }
             $this->set($key, $value, $validity);
         }
         return $value;
