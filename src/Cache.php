@@ -60,7 +60,7 @@ class Cache implements \DC\Cache\ICache {
             $expires = (int)$validity;
         }
 
-        $this->memcache->add($key, $value, null, $expires);
+        $this->memcache->set($key, $value, $expires);
     }
 
     /**
