@@ -74,9 +74,7 @@ class Cache implements \DC\Cache\ICache {
     function getWithFallback($key, callable $fallback, $validity = null)
     {
         $value = $this->get($key);
-        // TODO: find a better way to prevent false negatives (boolean false as the stored value), e.g. by manually
-        // serializing everything that goes in, and having get() throw if the content is not serialized
-        if ($value === false) {
+        if ($value === false && $this->memcache->getResultCode() == \Memcached::RES_NOTFOUND) {
             $value = $fallback();
             if (is_callable($validity)) {
                 $validity = $validity($value);
