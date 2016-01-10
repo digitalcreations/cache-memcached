@@ -1,11 +1,11 @@
 <?php
 
-namespace DC\Cache\Implementations\Memcache;
+namespace DC\Cache\Implementations\Memcached;
 
 class Cache implements \DC\Cache\ICache {
 
     /**
-     * @var \Memcache
+     * @var \Memcached
      */
     private $memcache;
     private $isConnected = false;
@@ -15,7 +15,7 @@ class Cache implements \DC\Cache\ICache {
     private $configuration;
 
     function __construct(MemcacheConfiguration $configuration) {
-        $this->memcache = new \Memcache;
+        $this->memcache = new \Memcached;
         $this->configuration = $configuration;
     }
 
@@ -25,7 +25,7 @@ class Cache implements \DC\Cache\ICache {
      */
     private function connect() {
         if ($this->isConnected) return;
-        $this->memcache->connect($this->configuration->getHost(), $this->configuration->getPort());
+        $this->memcache->addServer($this->configuration->getHost(), $this->configuration->getPort());
     }
 
     /**

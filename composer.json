@@ -1,5 +1,5 @@
 {
-    "name": "dc/cache-memcache",
+    "name": "dc/cache-memcached",
     "description": "Cache interface",
     "keywords": ["cache", "memcached"],
     "homepage": "http://github.com/digitalcreations/cache",
@@ -22,11 +22,11 @@
     },
     "require": {
         "dc/cache": ">=0.2",
-        "ext-memcache": "*"
+        "ext-memcached": "*"
     },
     "autoload": {
         "psr-4": {
-            "DC\\Cache\\Implementations\\Memcache\\": "src/"
+            "DC\\Cache\\Implementations\\Memcached\\": "src/"
         }
     }
 }

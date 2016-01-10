@@ -1,6 +1,6 @@
 <?php
 
-namespace DC\Cache\Implementations\Memcache;
+namespace DC\Cache\Implementations\Memcached;
 
 class MemcacheConfiguration {
     /**
