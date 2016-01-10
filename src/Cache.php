@@ -74,17 +74,21 @@ class Cache implements \DC\Cache\ICache {
     function getWithFallback($key, callable $fallback, $validity = null)
     {
         $value = $this->get($key);
-        if ($value === false && $this->memcache->getResultCode() == \Memcached::RES_NOTFOUND) {
+        if ($value === false) {
+            $resultCode = $this->memcache->getResultCode();
             $value = $fallback();
-            if (is_callable($validity)) {
-                $validity = $validity($value);
-                if (!($validity instanceof \DateInterval) &&
-                    !($validity instanceof \DateTime) &&
-                    !is_int($validity)) {
-                    throw new \UnexpectedValueException('Validity callback should return instance of \DateTime or \DateInterval or int.');
+            if ($resultCode == \Memcached::RES_NOTFOUND) {
+                if (is_callable($validity)) {
+                    $validity = $validity($value);
+                    if (!($validity instanceof \DateInterval) &&
+                        !($validity instanceof \DateTime) &&
+                        !is_int($validity)
+                    ) {
+                        throw new \UnexpectedValueException('Validity callback should return instance of \DateTime or \DateInterval or int.');
+                    }
                 }
+                $this->set($key, $value, $validity);
             }
-            $this->set($key, $value, $validity);
         }
         return $value;
     }
